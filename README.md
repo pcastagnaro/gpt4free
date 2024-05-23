@@ -135,6 +135,8 @@ Run the Web UI on Your Smartphone:
 ##### Install using PyPI package:
 
 ```
+python -m venv gpt4free
+source gpt4free/bin/activate
 pip install -U g4f[all]
 ```
 
