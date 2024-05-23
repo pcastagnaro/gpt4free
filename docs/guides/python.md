@@ -1,15 +1,21 @@
-### Guide: Running the G4F GUI on Your Smartphone
+# Guide: Running from Python
 
-Running Python applications on your smartphone is possible with specialized apps like Pydroid. This tutorial will walk you through the process using an Android smartphone with Pydroid. Note that the steps may vary slightly for iPhone users due to differences in app names and ownership.
+## Create a Virtual Environment
+1. **Create a Python Virtual Environment in order to then install the required libraries:**
 
-<p align="center">
-    On the first screenshot is <strong>Pydroid</strong> and on the second is the <strong>Web UI</strong> in a browser
-</p>
+```
+python -m venv gpt4free
+source gpt4free/bin/activate
+pip install -U g4f[all]
+```
 
-<p align="center">
-    <img src="/docs/guides/phone.png" />
-    <img src="/docs/guides/phone2.jpeg" />
-</p>
+## Install the required 
+1. **Install using PyPI package:**
+`pip install -U g4f[all]`
+
+## Single prompt via CLI parameter
+
+This tutorial will walk you through the process of using `gpt4free` from Python sending a single prompt via parameter in the command line.
 
 1. **Install Pydroid from the Google Play Store:**
    - Navigate to the Google Play Store and search for "Pydroid 3 - IDE for Python 3" or use the following link: [Pydroid 3 - IDE for Python 3](https://play.google.com/store/apps/details/Pydroid_3_IDE_for_Python_3).
@@ -27,24 +33,30 @@ Running Python applications on your smartphone is possible with specialized apps
      ```
 
 5. **Create a New Python Script:**
-   - Within Pydroid, create a new Python script and input the following content:
+   - Create a new file called `gpt4free_python.py` and input the following content:
      ```python
-     from g4f import set_cookies
+     import argparse
+     from g4f.client import Client
 
-     set_cookies(".bing.com", {
-         "_U": "cookie value"
-     })
 
-     from g4f.gui import run_gui
+     def main():
+       parser = argparse.ArgumentParser(description="Get chat completion with user prompt")
+       parser.add_argument("prompt", type=str, help="The user prompt to complete")
+       args = parser.parse_args()
 
-     run_gui("0.0.0.0", 8080, debug=True)
+       client = Client()
+       response = client.chat.completions.create(
+           model="gpt-3.5-turbo", # Use the model you want
+           messages=[{"role": "user", "content": args.prompt}]
+       )
+       print(response.choices[0].message.content)
+
+
+     if __name__ == "__main__":
+       main()
+
      ```
-     Replace `"cookie value"` with your actual cookie value from Bing if you intend to create images using Bing.
+     Replace `model="gpt-3.5-turbo"` with the model you want to use.
 
 6. **Execute the Script:**
-   - Run the script by clicking on the play button or selecting the option to execute it.
-
-7. **Access the GUI:**
-   - Wait for the server to start, and once it's running, open the GUI using the URL provided in the output. [http://localhost:8080/chat/](http://localhost:8080/chat/)
-
-By following these steps, you can successfully run the G4F GUI on your smartphone using Pydroid, allowing you to create and interact with graphical interfaces directly from your device.
+   - Run the script by `gpt4free_python.py "Here your prompt"`
