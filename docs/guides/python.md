@@ -10,8 +10,12 @@ pip install -U g4f[all]
 ```
 
 ## Install the required 
-1. **Install using PyPI package:**
-`pip install -U g4f[all]`
+2. **Install using PyPI package:**
+```
+pip install -U g4f[all]
+```
+   - How do I install only parts or do disable parts?
+   Use partial requirements: [/docs/requirements](https://github.com/pcastagnaro/gpt4free/blob/main/docs/requirements.md)
 
 ## Single prompt via CLI parameter
 
