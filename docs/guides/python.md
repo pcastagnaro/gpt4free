@@ -3,7 +3,7 @@
 ## Create a Virtual Environment
 1. **Create a Python Virtual Environment in order to then install the required libraries:**
 
-```python
+```bash
 python -m venv gpt4free
 source gpt4free/bin/activate
 pip install -U g4f[all]
@@ -11,9 +11,9 @@ pip install -U g4f[all]
 
 ## Install the required 
 2. **Install using PyPI package:**
-```
+```bash
 pip install -U g4f[all]
-```
+````
    - How do I install only parts or do disable parts?
    Use partial requirements: [/docs/requirements](https://github.com/pcastagnaro/gpt4free/blob/main/docs/requirements.md)
 
